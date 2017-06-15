@@ -21,17 +21,27 @@ app.get('/:time', function(req, res, next) {
   blahDate = sugar.Date.create(input),
   validNatural = moment(blahDate).isValid();
 
-  var unix = moment(blahDate).format("X");
-  var numUnix = parseInt(unix);
-  console.log(moment(numUnix).isValid());
+
+  var numUnix = parseInt(input);
+  var validUnix = moment(numUnix).isValid();
+
+  console.log(validUnix);
 
   if(validNatural) {
     var formatted = moment(blahDate).format();
-    res.render('index', {naturalLanguageDate: input, unixTimeStamp:unix})
+    var unix = moment(blahDate).format("X");
+    res.render('index', {naturalLanguageDate: input, unixTimeStamp: unix})
   }
-  else if(validUnix) {
-    res.render('index', {unixTimeStamp: day})
+  else if (validUnix) {
+    var formatted = moment.unix(numUnix).format("MMMM DD, YYYY");
+    res.render('index', {naturalLanguageDate: formatted, unixTimeStamp: numUnix})
+
   }
+  else {
+    res.render('index', {naturalLanguageDate: 'null'})
+  }
+
+
 });
 
 app.listen(3000, function() {
