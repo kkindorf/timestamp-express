@@ -4,7 +4,7 @@ var moment = require('moment');
 var sugar = require('sugar');
 
 var app = express();
-
+var port = process.env.PORT || 8080;
 app.use(express.static(__dirname + '/public'));
 
 //December%2015,%202015
@@ -25,7 +25,6 @@ app.get('/:time', function(req, res, next) {
   var numUnix = parseInt(input);
   var validUnix = moment(numUnix).isValid();
 
-  console.log(validUnix);
 
   if(validNatural) {
     var formatted = moment(blahDate).format();
@@ -44,6 +43,6 @@ app.get('/:time', function(req, res, next) {
 
 });
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log('app listening on port 3000')
 })
