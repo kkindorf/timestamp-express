@@ -13,8 +13,8 @@ app.engine('.hbs', hbs({extname: '.hbs', defaultLayout: 'main'}));
 app.set('view engine', '.hbs');
 
 app.get('/', function(req, res, next) {
-  var instructions = "Hi There. To get this app working just enter a value for a date like this <br><code>December%2015,%202015</code> <br>or enter a unix timestamp similar to this <code>1450137600</code> and you'll receive the formatted date back!"
-  res.render('index', {test:instructions})
+  var instructions = "Hi There. To get this app working just enter a value for a date like this: <code>December%2015,%202015</code> <br><br><br>You can also enter a unix timestamp similar to this <code>1450137600</code> and you'll receive the formatted date back!"
+  res.render('index', {instructions:instructions})
 })
 
 app.get('/:time', function(req, res, next) {
